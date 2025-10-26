@@ -1,8 +1,8 @@
-import java.rmi.server.UnicastRemoteObject;
-import java.rmi.RemoteException;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.File;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -17,7 +17,7 @@ public class RegistrationImpl extends UnicastRemoteObject implements Registratio
 
     @Override
     public synchronized String registerUser(String name, String email, String password) throws RemoteException {
-        // Basic server-side validation
+        // Basic validation
         if (name == null || name.trim().isEmpty()) return "Name cannot be empty.";
         if (email == null || email.trim().isEmpty()) return "Email cannot be empty.";
 
