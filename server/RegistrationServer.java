@@ -30,7 +30,7 @@ public class RegistrationServer {
             RegistrationImpl impl = new RegistrationImpl(storageFile);
             Naming.rebind("rmi://" + serverIp + "/RegistrationService", impl);
 
-            System.out.println("✅ Server ready at rmi://" + serverIp + "/RegistrationService");
+            System.out.println("Server ready at rmi://" + serverIp + "/RegistrationService");
 
         } catch (Exception ex) {
             ex.printStackTrace();
