@@ -18,7 +18,6 @@ public class RegistrationServer {
             LocateRegistry.createRegistry(1099);
             System.out.println("RMI registry started on port 1099.");
 
-            // Create file if not exists
             File storageFile = new File(storagePath);
             if (!storageFile.exists()) {
                 storageFile.createNewFile();

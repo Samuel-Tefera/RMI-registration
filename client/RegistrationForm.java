@@ -65,8 +65,38 @@ public class RegistrationForm extends JFrame {
             String email = emailField.getText().trim();
             String password = new String(passwordField.getPassword());
 
+            if (name.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter a name.");
+                return;
+            }
+            if (email.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter an email.");
+                return;
+            }
+
             String response = regService.registerUser(name, email, password);
+
+            if ("Email already registered.".equalsIgnoreCase(response.trim())) {
+                JOptionPane.showMessageDialog(this, response);
+                return;
+            }
+
             JOptionPane.showMessageDialog(this, response);
+
+            nameField.setText("");
+            emailField.setText("");
+            passwordField.setText("");
+
+            try {
+                String allUsers = regService.getAllUsers();
+                System.out.println("=== All Registered Users from Server ===");
+                System.out.println(allUsers);
+                System.out.println("========================================");
+            } catch (Exception ex) {
+                System.err.println("Failed to fetch all users: " + ex.getMessage());
+                ex.printStackTrace();
+            }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error calling server: " + e.getMessage());
             e.printStackTrace();
